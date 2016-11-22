@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>方块滚动</title>
+	<style type="text/css">
+	body{
+		background: gray;
+	}
+	canvas{
+		background: white;
+	}
+	</style>
+	
+</head>
+<body>
+<canvas width="500" height="500" id="cas"></canvas>
+<script type="text/javascript">
+window.onload=function(){
+	var cas=document.getElementById('cas');
+	var ctx=cas.getContext("2d");
+	var num1=0,num2=0,value=1,timer;
+	function move(){
+		num1++;
+		ctx.save();
+		ctx.clearRect(0,0,cas.width,cas.height);
+		ctx.translate(100,100);
+		if (num2==100) {
+			value=-1;
+		}else if (num2==0) {
+			value=1;
+		};
+		num2+=value;
+		ctx.scale(num2*1/50,num2*1/50);
+		ctx.rotate(num1*Math.PI/180);
+		ctx.translate(-50,-50);
+		ctx.fillRect(0,0,100,100);
+		ctx.restore();
+	}
+
+	timer=setInterval(move,30)
+
+
+}
+	
+</script>	
+</body>
+</html>
